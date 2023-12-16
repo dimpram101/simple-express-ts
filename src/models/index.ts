@@ -1,2 +1,2 @@
 export * from "./ErrorModel";
-export * from "./User";
+export * from "./UserModel";
