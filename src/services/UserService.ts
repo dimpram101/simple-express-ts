@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { ErrorResponse } from "../models/ErrorModel";
-import { BaseUserModel, UserUpdatePasswordModel } from "../models/User";
+import { BaseUserModel, UserUpdatePasswordModel } from "../models";
 import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
@@ -83,7 +83,7 @@ export const deleteUserService = async (id: string) => {
 
 export const UpdatePasswordService = async (
   id: string,
-  { current_password, new_password, confirm_password }: any
+  { current_password, new_password, confirm_password }: UserUpdatePasswordModel
 ) => {
   console.log(id, current_password, new_password, confirm_password)
   const user = await prisma.user.findUnique({

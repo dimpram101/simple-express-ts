@@ -1,6 +1,5 @@
-import { UserLoginModel, UserRegisterModel } from "../models/User";
 import { PrismaClient } from "@prisma/client";
-import { ErrorResponse } from "../models/ErrorModel";
+import { ErrorResponse, UserLoginModel, UserRegisterModel } from "../models";
 import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
