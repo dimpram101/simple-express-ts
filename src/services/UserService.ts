@@ -50,6 +50,12 @@ export const editUserService = async (
       email,
       phone_number,
     },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      phone_number: true,
+    },
   });
 
   return updatedUser;
@@ -106,14 +112,12 @@ export const UpdatePasswordService = async (
 
   const password = bcrypt.hashSync(new_password, salt);
 
-  const updatedUser = await prisma.user.update({
+  await prisma.user.update({
     where: {
       id: Number(id),
     },
     data: {
       password,
-    },
+    }
   });
-
-  return updatedUser;
 };

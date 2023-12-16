@@ -19,6 +19,7 @@ export const getUserByIdController = async (
     return res.status(200).json({
       code: 200,
       status: "success",
+      message: "User found",
       data: {
         user,
       },
@@ -40,6 +41,7 @@ export const editUserController = async (
     return res.status(200).json({
       code: 200,
       status: "success",
+      message: "User updated",
       data: {
         user,
       },
@@ -63,6 +65,7 @@ export const deleteUserController = async (
       code: 200,
       status: "success",
       message: "User deleted",
+      data: {}
     });
   } catch (error) {
     next(error);
