@@ -1,8 +1,8 @@
 export class ErrorResponse extends Error {
   code: number;
-  tag: string;
+  tag: string[];
 
-  constructor(code: number, tag: string, message: string) {
+  constructor(code: number, tag: string[], message: string) {
     super(message);
     this.tag = tag;
     this.code = code;

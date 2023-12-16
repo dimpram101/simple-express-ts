@@ -3,12 +3,18 @@ export interface BaseUserModel {
   name: string;
   email: string;
   phone_number: string;
-  password: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
 export interface UserRegisterModel extends BaseUserModel {
+  confirm_password: string;
+  password: string;
+}
+
+export interface UserUpdatePasswordModel extends BaseUserModel {
+  current_password: string;
+  new_password: string;
   confirm_password: string;
 }
 
