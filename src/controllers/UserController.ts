@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import {
+  UpdateAvatarService,
   UpdatePasswordService,
   deleteUserService,
   editUserService,
@@ -65,7 +66,7 @@ export const deleteUserController = async (
       code: 200,
       status: "success",
       message: "User deleted",
-      data: {}
+      data: {},
     });
   } catch (error) {
     next(error);
@@ -85,6 +86,27 @@ export const updatePasswordController = async (
       code: 200,
       status: "success",
       message: "Password updated",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateAvatarController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { id } = req.body;
+    const avatar = await UpdateAvatarService(id, req.files?.avatar);
+    return res.status(200).json({
+      code: 200,
+      status: "success",
+      message: "Avatar updated",
+      data: {
+        avatar,
+      },
     });
   } catch (error) {
     next(error);
