@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { LoginService, RegisterService } from "../services/AuthService";
+import { LoginService, RegisterService } from "../services";
 import { generateAccessToken } from "../utils/jwt";
 
 export const registerController = async (req: Request, res: Response, next: NextFunction) => {

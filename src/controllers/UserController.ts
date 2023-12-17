@@ -5,7 +5,7 @@ import {
   deleteUserService,
   editUserService,
   getUserByIdService,
-} from "../services/UserService";
+} from "../services";
 
 export const getUserByIdController = async (
   req: Request,
