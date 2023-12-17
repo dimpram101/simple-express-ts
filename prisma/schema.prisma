@@ -18,8 +18,10 @@ model User {
   password     String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  role_id      Int      @default(1) @map("role_id")
 
   avatar UserAvatar?
+  role   Role        @relation(fields: [role_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
 
   @@map("users")
 }
@@ -36,4 +38,15 @@ model UserAvatar {
   user_id       Int      @unique @map("user_id")
 
   @@map("user_avatars")
+}
+
+model Role {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users User[]
+
+  @@map("roles")
 }
