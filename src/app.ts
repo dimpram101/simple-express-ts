@@ -1,10 +1,9 @@
 import express from "express";
 import morgan from "morgan";
 import dotenv from "dotenv";
-import { errorHandler } from "./middlewares/ErrorMiddleware";
-import { authRoute, userRoute } from "./routes";
 import fileupload from "express-fileupload";
-import { verifyToken } from "./middlewares";
+import { authRoute, roleRoute, userRoute } from "./routes";
+import { verifyToken, errorHandler } from "./middlewares";
 
 const app = express();
 dotenv.config();
@@ -17,6 +16,7 @@ app.use(express.json());
 
 app.use("/api/", authRoute);
 app.use("/api/user/", verifyToken, userRoute);
+app.use("/api/role/", roleRoute);
 
 app.use(errorHandler);
 

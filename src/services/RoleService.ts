@@ -3,6 +3,12 @@ import { ErrorResponse } from "../models";
 
 const prisma = new PrismaClient();
 
+export const GetAllRolesService = async () => {
+  const roles = await prisma.role.findMany();
+
+  return roles;
+};
+
 export const CreateRoleService = async (name: string) => {
   if (!name) throw new ErrorResponse(400, ["role"], "Name is required");
 
@@ -22,6 +28,12 @@ export const EditRoleService = async (id: number, name: string) => {
 
 export const DeleteRoleService = async (id: number) => {
   if (!id) throw new ErrorResponse(400, ["id"], "Id is required");
+
+  const isRoleExist = await prisma.role.findUnique({ where: { id } });
+
+  if (!isRoleExist) {
+    throw new ErrorResponse(404, ["role"], "Role not found");
+  }
 
   const userHasRoles = await prisma.user.findMany({
     where: { role_id: id },
