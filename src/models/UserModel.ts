@@ -12,7 +12,7 @@ export interface UserRegisterModel extends BaseUserModel {
   password: string;
 }
 
-export interface UserUpdatePasswordModel extends BaseUserModel {
+export interface UserUpdatePasswordModel {
   current_password: string;
   new_password: string;
   confirm_password: string;
